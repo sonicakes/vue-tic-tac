@@ -1,8 +1,8 @@
 <template
   ><div>
     <h2>Choose to be X or 0</h2>
-    <p v-if="chosen">
-      You have chosen <span class="chosen">{{ playerChoice }}</span>
+    <p v-if="chosen && !reset">
+      You have chosen <span class="chosen">{{ playerChoice }} </span>
     </p>
     <div class="choice-bar">
       <div class="button-choice" @click="chooseOption('X')">X</div>
@@ -20,6 +20,7 @@ export default {
     };
   },
   emits: ["player-choice", "chosen"],
+  props: ["reset"],
   methods: {
     chooseOption(opt) {
       this.playerChoice = opt;

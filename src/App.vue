@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <PlayerChoice @player-choice="choosePlayer" @chosen="isChosen" />
+    <PlayerChoice
+      @player-choice="choosePlayer"
+      @chosen="isChosen"
+      :reset="hasReset"
+    />
     <p>{{ playerOption }}</p>
     <p>{{ hasChosen }}</p>
     <GameGrid
@@ -9,7 +13,6 @@
       @clicked-square="clickedOn"
       @reset="resetChoice"
     />
-
   </div>
 </template>
 
@@ -27,6 +30,7 @@ export default {
     return {
       playerOption: null,
       hasChosen: false,
+      hasReset: false,
       squares: [
         {
           name: "1",
@@ -80,12 +84,12 @@ export default {
       } else {
         this.playerOption = "X";
       }
-      console.log("this is getting called");
     },
     resetChoice() {
       this.playerOption = null;
       this.hasChosen = false;
-    }
+      this.hasReset = true;
+    },
   },
 };
 </script>

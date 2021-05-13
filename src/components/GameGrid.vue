@@ -29,7 +29,6 @@
 </template>
 
 <script>
-
 export default {
   components: {},
   props: ["playsquares", "choice"],
@@ -43,9 +42,6 @@ export default {
 
   methods: {
     squareClicked(sq, idx) {
-      console.log("beginning", this.choice);
-      console.log(this.playsquares);
-      console.log("clicked", sq.name);
       this.$emit("clicked-square");
 
       if (this.choice === "0") {
@@ -55,17 +51,13 @@ export default {
       } else {
         alert("you have to pick sides first");
       }
-
-      console.log(this.choice);
     },
     resetGame() {
-    this.playsquares.forEach((value, index) => {
-    value.clicked = null;
-    console.log(value);
-    console.log(index);
-    this.$emit('reset');
-});
-    }
+      this.playsquares.forEach((value) => {
+        value.clicked = null;
+        this.$emit("reset");
+      });
+    },
   },
 };
 </script>
