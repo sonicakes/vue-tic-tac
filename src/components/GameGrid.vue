@@ -1,31 +1,48 @@
 <template>
-  <div class="container">
-    <div class="grid">
-      <GridSquare @click="squareClicked('1')"/>
-      <GridSquare number="2"/>
-      <GridSquare number="3"/>
-      <GridSquare number="4"/>
-      <GridSquare number="5"/>
-      <GridSquare number="6"/>
-      <GridSquare number="7"/>
-      <GridSquare number="8"/>
-      <GridSquare number="9"/>
+  <div>
+    <div class="container">
+      <!-- <GridSquare /> -->
+      <div class="grid">
+        <div
+          @click="squareClicked(square)"
+          v-for="square in playsquares"
+          :key="square.id"
+          class="grid-item"
+        >
+{{ square.playOption }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import GridSquare from "./GridSquare";
+// import GridSquare from "./GridSquare";
 
 export default {
   components: {
-    GridSquare,
+    // GridSquare,
   },
+  props: ["playsquares", "choice"],
   methods: {
-      squareClicked (num) {
-          this.$emit('clicked-square', num);
-      }
-  }
+    squareClicked(sq) {
+        console.log(this.playsquares)
+      console.log("clicked", sq);
+      this.$emit('clicked-square', sq);
+    if (this.choice === 'X') {
+    sq.playOption = 'X';
+    }else if (this.choice === '0'){
+        sq.playOption = '0';
+    }
+    },
+  },
+  data() {
+    return { 
+playOption: null
+    
+
+    };
+  },
 };
 </script>
 
@@ -41,5 +58,17 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 20px;
   column-gap: 20px;
+}
+
+.grid-item {
+  width: 150px;
+  height: 150px;
+  background: lightblue;
+  border: 1px solid seagreen;
+  cursor: pointer;
+}
+
+.grid-item:hover {
+  background: salmon;
 }
 </style>

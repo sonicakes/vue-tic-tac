@@ -1,5 +1,4 @@
 <template>
-  <div class="grid-item"></div>
 </template>
 
 
@@ -7,22 +6,13 @@
 export default {
     data() {
         return {
-            
         }
     },
-    
+    methods: {
+       
+    }
 }
 </script>
 <style scoped>
-.grid-item {
-  width: 150px;
-  height: 150px;
-  background: lightblue;
-  border: 1px solid seagreen;
-  cursor: pointer;
-}
 
-.grid-item:hover {
-  background: salmon;
-}
 </style>
