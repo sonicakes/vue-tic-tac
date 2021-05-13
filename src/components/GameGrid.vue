@@ -9,13 +9,13 @@
           :key="square.id"
           class="grid-item"
         >
-        name:{{ square.name }} <br>index:{{ index }}
-        <span v-if="square.clicked === 'X'">
-            <img class="symbol" src="../assets/cross.png">
-            </span>
-        <span v-if="square.clicked === '0'">
-            <img class="symbol" src="../assets/0.png">
-        </span>
+          name:{{ square.name }} <br />index:{{ index }}
+          <span v-if="square.clicked === 'X'">
+            <img class="symbol" src="../assets/cross.png" />
+          </span>
+          <span v-if="square.clicked === '0'">
+            <img class="symbol" src="../assets/0.png" />
+          </span>
         </div>
       </div>
     </div>
@@ -29,31 +29,35 @@ export default {
   components: {
     // GridSquare,
   },
-  computed: {
-
-  },
   props: ["playsquares", "choice"],
+
+  data() {
+    return {
+      choiceOpt: null,
+    };
+  },
+  //   mounted() {
+  // this.choiceOpt = this.choice;
+  //       },
+  computed: {},
+
   methods: {
     squareClicked(sq, idx) {
-      console.log(this.playsquares)
+      console.log("beginning", this.choice);
+      console.log(this.playsquares);
       console.log("clicked", sq.name);
-      this.$emit('clicked-square', sq);
+      this.$emit("clicked-square", sq);
 
- 
-    if (this.choice === '0'){
-    this.playsquares[idx].clicked = '0';
-    }else if (this.choice === 'X'){
-        this.playsquares[idx].clicked = 'X';
-    }else {
-        alert('you have to pick sides first')
-    }
+      if (this.choice === "0") {
+        this.playsquares[idx].clicked = "0";
+      } else if (this.choice === "X") {
+        this.playsquares[idx].clicked = "X";
+      } else {
+        alert("you have to pick sides first");
+      }
 
-    this.choice = !this.choice;
+      console.log(this.choice);
     },
-  },
-  data() {
-    return { 
-    };
   },
 };
 </script>
@@ -86,10 +90,10 @@ export default {
 }
 
 .symbol {
-    position: absolute;
-    height: 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

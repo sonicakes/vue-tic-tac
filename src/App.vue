@@ -1,9 +1,13 @@
 <template>
   <div id="app">
     <PlayerChoice @player-choice="choosePlayer" @chosen="isChosen" />
-    <p>{{ playerOption}}</p>
+    <p>{{ playerOption }}</p>
     <p>{{ hasChosen }}</p>
-    <GameGrid :playsquares="squares" :choice="playerOption" />
+    <GameGrid
+      :playsquares="squares"
+      :choice="playerOption"
+      @clicked-square="clickedOn"
+    />
   </div>
 </template>
 
@@ -23,42 +27,42 @@ export default {
       hasChosen: false,
       squares: [
         {
-          name: '1',
-          clicked: null
+          name: "1",
+          clicked: null,
         },
         {
-          name: '2',
-          clicked: null
+          name: "2",
+          clicked: null,
         },
         {
-          name: '3',
-          clicked: null
+          name: "3",
+          clicked: null,
         },
         {
-          name: '4',
-          clicked: null
+          name: "4",
+          clicked: null,
         },
         {
-          name: '5',
-          clicked: null
+          name: "5",
+          clicked: null,
         },
         {
-        name: '6',
-        clicked: null
+          name: "6",
+          clicked: null,
         },
         {
-          name: '7',
-          clicked: null
+          name: "7",
+          clicked: null,
         },
         {
-          name: '8',
-          clicked: null
+          name: "8",
+          clicked: null,
         },
         {
-          name: '9',
-          clicked: null
-        }
-      ]
+          name: "9",
+          clicked: null,
+        },
+      ],
     };
   },
   methods: {
@@ -68,7 +72,14 @@ export default {
     isChosen(option) {
       this.hasChosen = option;
     },
-  
+    clickedOn(sq) {
+      if (this.playerOption === "X") {
+        this.playerOption = "0";
+      } else {
+        this.playerOption = "X";
+      }
+      console.log(sq, "this is getting called");
+    },
   },
 };
 </script>

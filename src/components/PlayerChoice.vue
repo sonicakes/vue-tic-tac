@@ -19,14 +19,13 @@ export default {
       chosen: false,
     };
   },
-  emits: ['player-choice', 'chosen'],
+  emits: ["player-choice", "chosen"],
   methods: {
     chooseOption(opt) {
       this.playerChoice = opt;
       this.chosen = true;
-      this.$emit('player-choice', opt);
-      this.$emit('chosen', this.chosen);
-
+      this.$emit("player-choice", opt);
+      this.$emit("chosen", this.chosen);
     },
   },
 };
