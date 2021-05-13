@@ -4,12 +4,18 @@
       <!-- <GridSquare /> -->
       <div class="grid">
         <div
-          @click="squareClicked(square)"
-          v-for="square in playsquares"
+          @click="squareClicked(square, index)"
+          v-for="(square, index) in playsquares"
           :key="square.id"
           class="grid-item"
         >
-{{ square.playOption }}
+        name:{{ square.name }} <br>index:{{ index }}
+        <span v-if="square.clicked === 'X'">
+            <img class="symbol" src="../assets/cross.png">
+            </span>
+        <span v-if="square.clicked === '0'">
+            <img class="symbol" src="../assets/0.png">
+        </span>
         </div>
       </div>
     </div>
@@ -23,24 +29,30 @@ export default {
   components: {
     // GridSquare,
   },
+  computed: {
+
+  },
   props: ["playsquares", "choice"],
   methods: {
-    squareClicked(sq) {
-        console.log(this.playsquares)
-      console.log("clicked", sq);
+    squareClicked(sq, idx) {
+      console.log(this.playsquares)
+      console.log("clicked", sq.name);
       this.$emit('clicked-square', sq);
-    if (this.choice === 'X') {
-    sq.playOption = 'X';
-    }else if (this.choice === '0'){
-        sq.playOption = '0';
+
+ 
+    if (this.choice === '0'){
+    this.playsquares[idx].clicked = '0';
+    }else if (this.choice === 'X'){
+        this.playsquares[idx].clicked = 'X';
+    }else {
+        alert('you have to pick sides first')
     }
+
+    this.choice = !this.choice;
     },
   },
   data() {
     return { 
-playOption: null
-    
-
     };
   },
 };
@@ -66,9 +78,18 @@ playOption: null
   background: lightblue;
   border: 1px solid seagreen;
   cursor: pointer;
+  position: relative;
 }
 
 .grid-item:hover {
   background: salmon;
+}
+
+.symbol {
+    position: absolute;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 </style>

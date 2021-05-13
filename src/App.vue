@@ -3,8 +3,7 @@
     <PlayerChoice @player-choice="choosePlayer" @chosen="isChosen" />
     <p>{{ playerOption}}</p>
     <p>{{ hasChosen }}</p>
-    <GameGrid :playsquares="squares" :choice="playerOption" @clicked-square="clickedOn"/>
-    <p>clicked on square # {{ clicked }}</p>
+    <GameGrid :playsquares="squares" :choice="playerOption" />
   </div>
 </template>
 
@@ -22,8 +21,44 @@ export default {
     return {
       playerOption: null,
       hasChosen: false,
-      squares: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      clicked: null
+      squares: [
+        {
+          name: '1',
+          clicked: null
+        },
+        {
+          name: '2',
+          clicked: null
+        },
+        {
+          name: '3',
+          clicked: null
+        },
+        {
+          name: '4',
+          clicked: null
+        },
+        {
+          name: '5',
+          clicked: null
+        },
+        {
+        name: '6',
+        clicked: null
+        },
+        {
+          name: '7',
+          clicked: null
+        },
+        {
+          name: '8',
+          clicked: null
+        },
+        {
+          name: '9',
+          clicked: null
+        }
+      ]
     };
   },
   methods: {
@@ -33,10 +68,7 @@ export default {
     isChosen(option) {
       this.hasChosen = option;
     },
-    clickedOn(sq) {
-      this.clicked = sq;
-    }
-
+  
   },
 };
 </script>
