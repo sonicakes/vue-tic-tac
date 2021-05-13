@@ -7,7 +7,9 @@
       :playsquares="squares"
       :choice="playerOption"
       @clicked-square="clickedOn"
+      @reset="resetChoice"
     />
+
   </div>
 </template>
 
@@ -72,14 +74,18 @@ export default {
     isChosen(option) {
       this.hasChosen = option;
     },
-    clickedOn(sq) {
+    clickedOn() {
       if (this.playerOption === "X") {
         this.playerOption = "0";
       } else {
         this.playerOption = "X";
       }
-      console.log(sq, "this is getting called");
+      console.log("this is getting called");
     },
+    resetChoice() {
+      this.playerOption = null;
+      this.hasChosen = false;
+    }
   },
 };
 </script>

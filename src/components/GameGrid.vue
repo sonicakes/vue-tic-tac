@@ -19,34 +19,34 @@
         </div>
       </div>
     </div>
+    <div class="result-window">
+      <div>Player X has won!</div>
+      <div>Player 0 has won!</div>
+      <div>It's a draw!</div>
+    </div>
+    <div class="button-reset" @click="resetGame">Start again</div>
   </div>
 </template>
 
 <script>
-// import GridSquare from "./GridSquare";
 
 export default {
-  components: {
-    // GridSquare,
-  },
+  components: {},
   props: ["playsquares", "choice"],
 
   data() {
     return {
-      choiceOpt: null,
+      winner: null,
     };
   },
-  //   mounted() {
-  // this.choiceOpt = this.choice;
-  //       },
-  computed: {},
+  emits: ["clicked-square", "reset"],
 
   methods: {
     squareClicked(sq, idx) {
       console.log("beginning", this.choice);
       console.log(this.playsquares);
       console.log("clicked", sq.name);
-      this.$emit("clicked-square", sq);
+      this.$emit("clicked-square");
 
       if (this.choice === "0") {
         this.playsquares[idx].clicked = "0";
@@ -58,6 +58,14 @@ export default {
 
       console.log(this.choice);
     },
+    resetGame() {
+    this.playsquares.forEach((value, index) => {
+    value.clicked = null;
+    console.log(value);
+    console.log(index);
+    this.$emit('reset');
+});
+    }
   },
 };
 </script>
@@ -95,5 +103,28 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.result-window {
+  margin-top: 20px;
+  border: 1px solid orchid;
+  padding: 5px;
+}
+
+.button-reset {
+  background: seagreen;
+  width: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.button-reset:hover {
+  background: lightblue;
+  color: #000;
 }
 </style>
