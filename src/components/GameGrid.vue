@@ -8,6 +8,7 @@
           v-for="(square, index) in playsquares"
           :key="square.id"
           class="grid-item"
+          :class="{ winner: square.isWon }"
         >
           name:{{ square.name }} <br />index:{{ index }}
           <span v-if="square.clicked === 'X'">
@@ -18,11 +19,6 @@
           </span>
         </div>
       </div>
-    </div>
-    <div class="result-window">
-      <div>Player X has won!</div>
-      <div>Player 0 has won!</div>
-      <div>It's a draw!</div>
     </div>
     <div class="button-reset" @click="resetGame">Start again</div>
   </div>
@@ -36,9 +32,10 @@ export default {
   data() {
     return {
       winner: null,
+      isWon: false,
     };
   },
-  emits: ["clicked-square", "reset"],
+  emits: ["clicked-square", "reset", "winner"],
 
   methods: {
     squareClicked(sq, idx) {
@@ -50,6 +47,21 @@ export default {
         this.playsquares[idx].clicked = "X";
       } else {
         alert("you have to pick sides first");
+      }
+      this.determineWinner();
+    },
+    determineWinner() {
+      if (
+        this.playsquares[0].clicked &&
+        this.playsquares[4].clicked &&
+        this.playsquares[8].clicked === "X"
+      ) {
+        this.winner = "X";
+        this.playsquares[0].isWon = true;
+        this.playsquares[4].isWon = true;
+        this.playsquares[8].isWon = true;
+        this.$emit("winner", this.winner);
+        console.log("gets hit");
       }
     },
     resetGame() {
@@ -89,18 +101,17 @@ export default {
   background: salmon;
 }
 
+.grid-item.winner {
+  background: seagreen;
+  border-color: orchid;
+}
+
 .symbol {
   position: absolute;
   height: 50px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.result-window {
-  margin-top: 20px;
-  border: 1px solid orchid;
-  padding: 5px;
 }
 
 .button-reset {
