@@ -67,6 +67,7 @@ export default {
     resetGame() {
       this.playsquares.forEach((value) => {
         value.clicked = null;
+        value.isWon = false;
         this.$emit("reset");
       });
     },

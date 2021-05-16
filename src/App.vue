@@ -107,6 +107,10 @@ export default {
       this.hasChosen = false;
       this.hasReset = true;
       this.winner = null;
+      this.squares.forEach((value) => {
+        value.clicked = null;
+        value.isWon = false;
+      });
     },
     establishWinner(win) {
       this.winner = win;
