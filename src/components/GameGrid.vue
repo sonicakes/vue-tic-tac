@@ -45,8 +45,6 @@ export default {
       if (this.choice != null) {
         this.numberofClicks++;
       }
-      console.log("number of clicks: ", this.numberofClicks);
-
       this.$emit("clicked-square");
 
       if (this.choice === "0") {
@@ -273,8 +271,8 @@ export default {
         value.clicked = null;
         value.isWon = false;
         this.numberofClicks = 0;
-        this.$emit("reset");
       });
+      this.$emit("reset");
     },
   },
 };

@@ -37,6 +37,7 @@
       @player-choice="choosePlayer"
       @chosen="isChosen"
       :reset="hasReset"
+      :option="playerOption"
     />
 
     <GameGrid
