@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <div v-if="winner === 'X'" class="overlay">
-      <div>
-        Player X has won!
-        <img src="https://media.giphy.com/media/zfYpmAfrcVOAE/giphy.gif" />
+    <div class="overlay" v-if="winner === 'X'">
+      <a class="cancel" href="#"></a>
+      <div class="modal">
+        <h2>Player X has won!</h2>
+        <div class="content">
+          <img src="https://media.giphy.com/media/zfYpmAfrcVOAE/giphy.gif" />
+          <p>Click 'refresh' button below to start again</p>
+        </div>
       </div>
     </div>
-      <div v-if="winner === '0'" class="overlay">
-      <div>
-        Player 0 has won!
-        <img src="https://media2.giphy.com/media/fedlFucnJ7VPa/giphy.gif" />
-      </div>
-      </div>
-       <div v-if="winner === 'draw'" class="overlay">
-      <div>
-        It's a draw
-        <img src="https://media4.giphy.com/media/30swyC5E1ktVe/giphy.gif" />
+
+    <div class="overlay" v-if="winner === '0'">
+      <a class="cancel" href="#"></a>
+      <div class="modal">
+        <h2>Player 0 has won!</h2>
+        <div class="content">
+          <img src="https://media2.giphy.com/media/fedlFucnJ7VPa/giphy.gif" />
+          <p>Click 'refresh' button below to start again</p>
+        </div>
       </div>
     </div>
+
+    <div class="overlay" v-if="winner === 'draw'">
+      <a class="cancel" href="#"></a>
+      <div class="modal">
+        <h2>It's a draw</h2>
+        <div class="content">
+          <img src="https://media4.giphy.com/media/30swyC5E1ktVe/giphy.gif" />
+          <p>Click 'refresh' button below to start again</p>
+        </div>
+      </div>
+    </div>
+
     <PlayerChoice
       @player-choice="choosePlayer"
       @chosen="isChosen"
       :reset="hasReset"
     />
+
     <GameGrid
       :playsquares="squares"
       :choice="playerOption"
@@ -142,5 +158,50 @@ export default {
   margin-top: 20px;
   border: 1px solid orchid;
   padding: 5px;
+}
+
+.modal {
+  margin: 100px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #666;
+  border-radius: 6px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.modal .content {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.modal p {
+  margin: 0 0 1em;
+  text-align: center;
+}
+
+.modal p:last-child {
+  margin: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.overlay .cancel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: default;
 }
 </style>

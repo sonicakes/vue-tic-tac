@@ -20,7 +20,9 @@
         </div>
       </div>
     </div>
-    <div class="button-reset" @click="resetGame">Start again</div>
+    <div title="restart the game" class="button-reset" @click="resetGame">
+      <img alt="restart the game" src="../assets/refresh.png" />
+    </div>
   </div>
 </template>
 
@@ -319,19 +321,14 @@ export default {
 }
 
 .button-reset {
-  background: seagreen;
-  width: 100px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
-  color: #fff;
-  margin-top: 20px;
+  z-index: 9999;
+  position: relative;
+  margin-top: 50px;
 }
 
-.button-reset:hover {
-  background: lightblue;
-  color: #000;
+.button-reset img {
+  width: 100px;
+  height: 100px;
 }
 </style>
