@@ -8,6 +8,14 @@
       <!-- <div>Player 0 has won!</div>
       <div>It's a draw!</div> -->
     </div>
+      <div v-if="winner === '0'" class="overlay">
+      <div>
+        Player 0 has won!
+        <img src="https://media2.giphy.com/media/fedlFucnJ7VPa/giphy.gif" />
+      </div>
+      <!-- <div>Player 0 has won!</div>
+      <div>It's a draw!</div> -->
+    </div>
     <PlayerChoice
       @player-choice="choosePlayer"
       @chosen="isChosen"
