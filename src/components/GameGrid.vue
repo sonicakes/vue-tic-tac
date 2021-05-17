@@ -33,12 +33,18 @@ export default {
     return {
       winner: null,
       isWon: false,
+      numberofClicks: 0,
     };
   },
   emits: ["clicked-square", "reset", "winner"],
 
   methods: {
     squareClicked(sq, idx) {
+      if (this.choice != null) {
+        this.numberofClicks++;
+      }
+      console.log("number of clicks: ", this.numberofClicks);
+
       this.$emit("clicked-square");
 
       if (this.choice === "0") {
@@ -46,7 +52,9 @@ export default {
       } else if (this.choice === "X") {
         this.playsquares[idx].clicked = "X";
       } else {
-        alert("you have to pick sides first");
+        alert(
+          "you have to pick sides first or you will go as X first by default"
+        );
       }
       this.determineWinner();
     },
@@ -66,7 +74,7 @@ export default {
         this.$emit("winner", this.winner);
       }
       //0, 1, 2 horizontal
-       if (
+      if (
         this.playsquares[0].clicked === "X" &&
         this.playsquares[1].clicked === "X" &&
         this.playsquares[2].clicked === "X"
@@ -78,7 +86,7 @@ export default {
         this.$emit("winner", this.winner);
       }
       //2,4,6 diagonal
-        if (
+      if (
         this.playsquares[2].clicked === "X" &&
         this.playsquares[4].clicked === "X" &&
         this.playsquares[6].clicked === "X"
@@ -89,8 +97,8 @@ export default {
         this.playsquares[6].isWon = true;
         this.$emit("winner", this.winner);
       }
-       //3,4,5 horizontal
-        if (
+      //3,4,5 horizontal
+      if (
         this.playsquares[3].clicked === "X" &&
         this.playsquares[4].clicked === "X" &&
         this.playsquares[5].clicked === "X"
@@ -101,8 +109,8 @@ export default {
         this.playsquares[5].isWon = true;
         this.$emit("winner", this.winner);
       }
-          //6,7,8 horizontal
-        if (
+      //6,7,8 horizontal
+      if (
         this.playsquares[6].clicked === "X" &&
         this.playsquares[7].clicked === "X" &&
         this.playsquares[8].clicked === "X"
@@ -113,8 +121,8 @@ export default {
         this.playsquares[8].isWon = true;
         this.$emit("winner", this.winner);
       }
-          //0,3,6 vertical
-        if (
+      //0,3,6 vertical
+      if (
         this.playsquares[0].clicked === "X" &&
         this.playsquares[3].clicked === "X" &&
         this.playsquares[6].clicked === "X"
@@ -125,8 +133,8 @@ export default {
         this.playsquares[6].isWon = true;
         this.$emit("winner", this.winner);
       }
-              //1,4,7 vertical
-        if (
+      //1,4,7 vertical
+      if (
         this.playsquares[1].clicked === "X" &&
         this.playsquares[4].clicked === "X" &&
         this.playsquares[7].clicked === "X"
@@ -137,8 +145,8 @@ export default {
         this.playsquares[7].isWon = true;
         this.$emit("winner", this.winner);
       }
-                //2,5,8 vertical
-        if (
+      //2,5,8 vertical
+      if (
         this.playsquares[2].clicked === "X" &&
         this.playsquares[5].clicked === "X" &&
         this.playsquares[8].clicked === "X"
@@ -152,8 +160,8 @@ export default {
 
       //0 combos
 
-            //0, 4, 8 diagonal
-     if (
+      //0, 4, 8 diagonal
+      if (
         this.playsquares[0].clicked === "0" &&
         this.playsquares[4].clicked === "0" &&
         this.playsquares[8].clicked === "0"
@@ -165,7 +173,7 @@ export default {
         this.$emit("winner", this.winner);
       }
       //0, 1, 2 horizontal
-     if (
+      if (
         this.playsquares[0].clicked === "0" &&
         this.playsquares[1].clicked === "0" &&
         this.playsquares[2].clicked === "0"
@@ -177,7 +185,7 @@ export default {
         this.$emit("winner", this.winner);
       }
       //2,4,6 diagonal
-         if (
+      if (
         this.playsquares[2].clicked === "0" &&
         this.playsquares[4].clicked === "0" &&
         this.playsquares[6].clicked === "0"
@@ -188,8 +196,8 @@ export default {
         this.playsquares[6].isWon = true;
         this.$emit("winner", this.winner);
       }
-       //3,4,5 horizontal
-         if (
+      //3,4,5 horizontal
+      if (
         this.playsquares[3].clicked === "0" &&
         this.playsquares[4].clicked === "0" &&
         this.playsquares[5].clicked === "0"
@@ -200,8 +208,8 @@ export default {
         this.playsquares[5].isWon = true;
         this.$emit("winner", this.winner);
       }
-          //6,7,8 horizontal
-        if (
+      //6,7,8 horizontal
+      if (
         this.playsquares[6].clicked === "0" &&
         this.playsquares[7].clicked === "0" &&
         this.playsquares[8].clicked === "0"
@@ -212,8 +220,8 @@ export default {
         this.playsquares[8].isWon = true;
         this.$emit("winner", this.winner);
       }
-          //0,3,6 vertical
-         if (
+      //0,3,6 vertical
+      if (
         this.playsquares[0].clicked === "0" &&
         this.playsquares[3].clicked === "0" &&
         this.playsquares[6].clicked === "0"
@@ -224,8 +232,8 @@ export default {
         this.playsquares[6].isWon = true;
         this.$emit("winner", this.winner);
       }
-              //1,4,7 vertical
-        if (
+      //1,4,7 vertical
+      if (
         this.playsquares[1].clicked === "0" &&
         this.playsquares[4].clicked === "0" &&
         this.playsquares[7].clicked === "0"
@@ -236,8 +244,8 @@ export default {
         this.playsquares[7].isWon = true;
         this.$emit("winner", this.winner);
       }
-                //2,5,8 vertical
-         if (
+      //2,5,8 vertical
+      if (
         this.playsquares[2].clicked === "0" &&
         this.playsquares[5].clicked === "0" &&
         this.playsquares[8].clicked === "0"
@@ -248,19 +256,21 @@ export default {
         this.playsquares[8].isWon = true;
         this.$emit("winner", this.winner);
       }
+
       //draw situation
-    //  if
-    //  (this.playsquares.forEach((value) => {
-    //      value.isWon = false;
-    //   })) {
-    //     this.winner = 'draw';
-    //     this.$emit("winner", this.winner);
-    //   }
-      },
+
+      this.playsquares.forEach((value) => {
+        if (this.numberofClicks === 9 && !value.isWon) {
+          this.winner = "draw";
+          this.$emit("winner", this.winner);
+        }
+      });
+    },
     resetGame() {
       this.playsquares.forEach((value) => {
         value.clicked = null;
         value.isWon = false;
+        this.numberofClicks = 0;
         this.$emit("reset");
       });
     },
