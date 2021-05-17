@@ -10,7 +10,6 @@
           class="grid-item"
           :class="{ winner: square.isWon }"
         >
-          name:{{ square.name }} <br />index:{{ index }}
           <span v-if="square.clicked === 'X'">
             <img class="symbol" src="../assets/cross.png" />
           </span>
@@ -312,7 +311,7 @@ export default {
 
 .symbol {
   position: absolute;
-  height: 50px;
+  height: 100px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

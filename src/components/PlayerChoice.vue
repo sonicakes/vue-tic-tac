@@ -5,8 +5,20 @@
       You have chosen <span class="chosen">{{ playerChoice }} </span>
     </p>
     <div class="choice-bar">
-      <div class="button-choice" @click="chooseOption('X')">X</div>
-      <div class="button-choice" @click="chooseOption('0')">0</div>
+      <div
+        class="button-choice"
+        @click="chooseOption('X')"
+        :class="{ selected: isChosen('X') }"
+      >
+        X
+      </div>
+      <div
+        class="button-choice"
+        @click="chooseOption('0')"
+        :class="{ selected: isChosen('0') }"
+      >
+        0
+      </div>
     </div>
   </div>
 </template>
@@ -22,6 +34,11 @@ export default {
   emits: ["player-choice", "chosen"],
   props: ["reset", "option"],
   methods: {
+    isChosen(clicked) {
+      if (this.option != null) {
+        return this.playerChoice === clicked;
+      }
+    },
     chooseOption(opt) {
       this.playerChoice = opt;
       this.chosen = true;
@@ -53,6 +70,12 @@ export default {
 
 .button-choice:hover {
   background: seagreen;
+  color: white;
+}
+
+.button-choice.selected {
+  background: seagreen;
+  border-color: salmon;
   color: white;
 }
 
